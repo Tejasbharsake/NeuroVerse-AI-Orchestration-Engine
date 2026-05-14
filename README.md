@@ -34,4 +34,10 @@ The central nervous system of the NeuroVerse AI platform.
    ```
 
 ## Architecture
-The engine follows a modular event-driven architecture, ensuring scalability and fault tolerance for complex AI workflows.
+The engine follows a modular event-driven architecture, ensuring scalability and fault tolerance for complex AI workflows. You can find the detailed design in [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+### System Flow
+1. **Goal Submission**: User provides a high-level objective.
+2. **Planning**: LLM decomposes the goal into atomic tasks.
+3. **Execution**: Workflow runtime coordinates task execution with memory and tools.
+4. **Monitoring**: Real-time tracking of states and performance.
