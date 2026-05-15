@@ -46,6 +46,13 @@ function NeuralConnection({ count = 40 }) {
     }
   });
 
+  const pointsGeometry = useMemo(() => {
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(points.flatMap(p => [p.x, p.y, p.z]));
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    return geometry;
+  }, [points]);
+
   return (
     <>
       <lineSegments ref={linesRef}>
@@ -53,14 +60,7 @@ function NeuralConnection({ count = 40 }) {
         <lineBasicMaterial color="#0ea5e9" transparent opacity={0.15} />
       </lineSegments>
       <points ref={pointsRef}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={points.length}
-            array={new Float32Array(points.flatMap(p => [p.x, p.y, p.z]))}
-            itemSize={3}
-          />
-        </bufferGeometry>
+        <primitive object={pointsGeometry} />
         <pointsMaterial size={0.1} color="#0ea5e9" transparent opacity={0.5} sizeAttenuation />
       </points>
     </>
